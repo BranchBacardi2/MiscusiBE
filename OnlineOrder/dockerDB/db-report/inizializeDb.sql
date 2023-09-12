@@ -195,6 +195,7 @@ CREATE TABLE IF NOT EXISTS piatti_ordinati (
     quantita  INT NOT NULL,
     piatto_nel_menu INT NOT NULL UNIQUE,
     ordine INT NOT NULL UNIQUE,
+    attualmentePresente boolean default true,
     PRIMARY KEY (piatti_ordinati_id),
     FOREIGN KEY (piatto_nel_menu) REFERENCES piatto_menu(piatto_menu_id),
     FOREIGN KEY (ordine) REFERENCES ordine(ordine_id)

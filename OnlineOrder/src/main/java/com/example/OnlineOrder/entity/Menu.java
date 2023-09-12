@@ -19,6 +19,9 @@ public class Menu {
     @Column(name = "data_creazione")
     private LocalDateTime dataCreazione;
 
+    @Column(name = "abilitato")
+    private Boolean abilitato;
+
 
     @OneToMany(mappedBy = "menu")
     private List<PiattoMenu> piatti;
@@ -54,5 +57,13 @@ public class Menu {
 
     public void setDataCreazione(LocalDateTime dataCreazione) {
         this.dataCreazione = dataCreazione;
+    }
+
+    public Boolean getAbilitato() {
+        return abilitato;
+    }
+
+    public void setAbilitato(Boolean abilitato) {
+        this.abilitato = abilitato;
     }
 }

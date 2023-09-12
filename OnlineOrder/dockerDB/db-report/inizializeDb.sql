@@ -48,8 +48,8 @@ VALUES
 
 CREATE TABLE IF NOT EXISTS piatti_ingredienti (
     prodotti_ingredienti_id int NOT NULL AUTO_INCREMENT,
-    piatto INT NOT NULL,
-    ingrediente INT NOT NULL,
+    piatto INT UNIQUE NOT NULL,
+    ingrediente  INT UNIQUE NOT NULL,
     quantita INT NOT NULL,
     PRIMARY KEY (prodotti_ingredienti_id),
     FOREIGN KEY (piatto) REFERENCES piatti(piatto_id),
@@ -99,8 +99,8 @@ VALUES
 CREATE TABLE IF NOT EXISTS piatto_menu(
      piatto_menu_id int NOT null AUTO_INCREMENT,
      piatto int NOT null,
-     menu int NOT null,
-     prezzo float NOT null,
+     menu int NOT null UNIQUE,
+     prezzo float NOT null UNIQUE,
      PRIMARY KEY (piatto_menu_id),
      FOREIGN KEY (piatto) REFERENCES piatti(piatto_id),
      FOREIGN KEY (menu) REFERENCES menu(menu_id)
@@ -193,8 +193,8 @@ CREATE TABLE IF NOT EXISTS ordine (
 CREATE TABLE IF NOT EXISTS piatti_ordinati (
     piatti_ordinati_id INT NOT NULL ,
     quantita  INT NOT NULL,
-    piatto_nel_menu INT NOT NULL,
-    ordine INT NOT NULL,
+    piatto_nel_menu INT NOT NULL UNIQUE,
+    ordine INT NOT NULL UNIQUE,
     PRIMARY KEY (piatti_ordinati_id),
     FOREIGN KEY (piatto_nel_menu) REFERENCES piatto_menu(piatto_menu_id),
     FOREIGN KEY (ordine) REFERENCES ordine(ordine_id)

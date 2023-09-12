@@ -1,5 +1,6 @@
 package com.example.OnlineOrder.rest;
 
+import com.example.OnlineOrder.dto.MenuUpdateDTO;
 import com.example.OnlineOrder.entity.Menu;
 import com.example.OnlineOrder.dto.MenuCreateDTO;
 import com.example.OnlineOrder.dto.MenuResponseDTO;
@@ -22,7 +23,7 @@ public class MenuRestController {
 
 
     @PutMapping("/menu")
-    Menu UpdateMenu(@RequestBody MenuCreateDTO updateMenu, @PathVariable int id){
-        return null;
+    MenuResponseDTO UpdateMenu(@RequestBody MenuUpdateDTO updateMenu ){
+        return menuService.update(updateMenu);
     }
 }

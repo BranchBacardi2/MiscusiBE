@@ -106,6 +106,8 @@ public class MenuServiceImpl implements  MenuService {
         result.setMenuId(newMenu.getMenuId());
         result.setDataCreazione(newMenu.getDataCreazione());
 
+        piattoMenuDao.delateLogic(menuInput.getId());
+
 
         List<PiattoMenu> piattiMenu = new ArrayList<PiattoMenu>();
         for ( PiattoMenuDTO piattoMenuDTO : menuInput.getPiatti()) {

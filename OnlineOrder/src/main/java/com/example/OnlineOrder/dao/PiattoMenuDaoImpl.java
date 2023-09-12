@@ -1,5 +1,6 @@
 package com.example.OnlineOrder.dao;
 
+import com.example.OnlineOrder.entity.Piatti;
 import com.example.OnlineOrder.entity.PiattoMenu;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
@@ -34,6 +35,13 @@ public class PiattoMenuDaoImpl implements PiattoMenuDao{
         return  result;
     }
 
+    @Override
+    @Transactional
+    public void delateLogic(Integer IdMenu) {
+        entityManager.createQuery("UPDATE  PiattoMenu P SET  P.attualmentePresente = false WHERE P.menu = :id" ,PiattoMenu.class).setParameter("id", IdMenu);
+
+
+    }
 }
 
 

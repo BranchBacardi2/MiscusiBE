@@ -11,4 +11,13 @@ public interface PiattoMenuDao {
     List<PiattoMenu> saveAll(List<PiattoMenu> piattiMenu );
 
 
+    public void delateLogic(Integer IdMenu);
+
+
+
+
+
+
+
+
 }

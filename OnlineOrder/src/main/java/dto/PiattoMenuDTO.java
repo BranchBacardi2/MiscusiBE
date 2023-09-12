@@ -2,8 +2,18 @@ package dto;
 
 public class PiattoMenuDTO {
     private  int id_piatto ;
+
+    private String nomePiatto;
     private  int prezzo;
 
+
+    public String getNomePiatto() {
+        return nomePiatto;
+    }
+
+    public void setNomePiatto(String nomePiatto) {
+        this.nomePiatto = nomePiatto;
+    }
 
     public PiattoMenuDTO() {
     }

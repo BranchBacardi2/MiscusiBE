@@ -2,6 +2,7 @@ package dao;
 
 import com.example.OnlineOrder.entity.Menu;
 import jakarta.persistence.EntityManager;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -14,19 +15,12 @@ public class MenuDaoImpl implements  MenuDao{
     }
 
     @Override
-    public void save(Menu menu) {
-        entityManager.persist(menu);
+    @Transactional
+    public Menu save(Menu menu) {
+       return entityManager.merge(menu);
     }
 
-    @Override
-    public Menu findById(Integer id) {
-        return null;
-    }
 
-    @Override
-    public void update(Menu menu) {
-        entityManager.merge(menu);
-    }
 
 
 }

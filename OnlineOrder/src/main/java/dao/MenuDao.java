@@ -6,9 +6,7 @@ import com.example.OnlineOrder.entity.PiattoMenu;
 
 public interface MenuDao  {
 
-    void save(Menu menu);
-    Menu findById(Integer id);
+    Menu save(Menu menu);
 
-    public void update(Menu menu);
 
 }

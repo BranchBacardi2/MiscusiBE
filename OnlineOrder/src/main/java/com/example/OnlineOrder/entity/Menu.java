@@ -55,9 +55,6 @@ public class Menu {
         return this.dataCreazione;
     }
 
-    public void setDataCreazione(LocalDateTime dataCreazione) {
-        this.dataCreazione = dataCreazione;
-    }
 
     public Boolean getAbilitato() {
         return abilitato;
@@ -66,4 +63,27 @@ public class Menu {
     public void setAbilitato(Boolean abilitato) {
         this.abilitato = abilitato;
     }
+
+
+/*
+    private  String ToStringpiatti(){
+        String result= "[\' ";
+        this.piatti.stream().map(piatto ->  "{ piatto ="+ piatto.getPiatto() + '\''+
+                                                      "prezzo ="+ piatto.getPrezzo() + "} \'");
+        result=result+" ]";
+        return  result;
+    }
+
+    @Override
+    public String toString() {
+        return "Menu{" +
+                "menuId=" + menuId +
+                ", nome='" + nome + '\'' +
+                ", dataCreazione=" + dataCreazione +
+                ", abilitato=" + abilitato +
+                ", piatti=" + this.ToStringpiatti() +
+                '}';
+    }
+    */
+
 }

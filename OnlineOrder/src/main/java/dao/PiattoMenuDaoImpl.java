@@ -7,6 +7,10 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 @Repository
 public class PiattoMenuDaoImpl implements PiattoMenuDao{
 
@@ -16,16 +20,25 @@ public class PiattoMenuDaoImpl implements PiattoMenuDao{
         this.entityManager = entityManager;
     }
 
+
     @Override
     @Transactional
-    public void save(PiattoMenu paittoMenu) {
-        entityManager.persist(paittoMenu);
+    public List<PiattoMenu> saveAll(List<PiattoMenu> piattiMenu) {
+        List<PiattoMenu> result =  new ArrayList<PiattoMenu>();
+        for  (Iterator<PiattoMenu> it = piattiMenu.iterator(); it.hasNext();){
+            PiattoMenu piattoMenu = it.next();
+            PiattoMenu paittoMenu = entityManager.merge(piattoMenu);
+            result.add(paittoMenu);
+            entityManager.flush();
+            entityManager.clear();
+        }
+        entityManager.getTransaction().commit();
+        return  result;
     }
-
-    @Override
-    public void update(PiattoMenu piattoMenu) {
-        entityManager.merge(piattoMenu);
-    }
-
 
 }
+
+
+
+
+

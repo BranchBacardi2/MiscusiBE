@@ -61,6 +61,7 @@ public class MenuServiceImpl implements  MenuService {
         result.setDataCreazione(newMenu.getDataCreazione());
 
 
+
         List<PiattoMenu> piattiMenu = new ArrayList<PiattoMenu>();
         for ( PiattoMenuDTO piattoMenuDTO : menuInput.getPiatti()) {
                PiattoMenu piattoMenu  = new PiattoMenu();
@@ -69,6 +70,7 @@ public class MenuServiceImpl implements  MenuService {
                piatto.setPiattoId(piattoMenuDTO.getId_piatto());
                piattoMenu.setPrezzo(piattoMenuDTO.getPrezzo());
                piattoMenu.setPiatto(piatto);
+               piattoMenu.setAttualmentePresente(true);
                piattiMenu.add(piattoMenu);
 
         }

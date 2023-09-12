@@ -21,6 +21,9 @@ public class PiattoMenu {
     @Column(name = "prezzo")
     private Float prezzo;
 
+    @Column(name= "attualmentePresente")
+    private  boolean attualmentePresente;
+
     public Integer getPiattoMenuId() {
         return this.piattoMenuId;
     }
@@ -51,5 +54,13 @@ public class PiattoMenu {
 
     public void setPrezzo(Float prezzo) {
         this.prezzo = prezzo;
+    }
+
+    public boolean isAttualmentePresente() {
+        return attualmentePresente;
+    }
+
+    public void setAttualmentePresente(boolean attualmentePresente) {
+        this.attualmentePresente = attualmentePresente;
     }
 }

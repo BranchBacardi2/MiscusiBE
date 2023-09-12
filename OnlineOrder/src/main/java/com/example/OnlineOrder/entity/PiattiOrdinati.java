@@ -20,8 +20,7 @@ public class PiattiOrdinati {
     @JoinColumn(name= "ordine_id")
     private Ordine ordine;
 
-    @Column(name= "attualmentePresente")
-    private  boolean attualmentePresente;
+
     public Integer getPiattiOrdinatiId() {
         return this.piattiOrdinatiId;
     }
@@ -54,11 +53,4 @@ public class PiattiOrdinati {
         this.ordine = ordine;
     }
 
-    public boolean isAttualmentePresente() {
-        return attualmentePresente;
-    }
-
-    public void setAttualmentePresente(boolean attualmentePresente) {
-        this.attualmentePresente = attualmentePresente;
-    }
 }

@@ -4,10 +4,11 @@ import jakarta.persistence.*;
 
 
 @Entity
-@Table(name = "Piatto_menu")
+@Table(name = "piatto_menu")
 public class PiattoMenu {
     @Id
     @Column(name = "piatto_menu_id")
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer piattoMenuId;
     @ManyToOne
     @JoinColumn(name="piatto")

@@ -1,4 +1,4 @@
-package dao;
+package com.example.OnlineOrder.dao;
 
 import com.example.OnlineOrder.entity.Menu;
 import jakarta.persistence.EntityManager;

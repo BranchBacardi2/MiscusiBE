@@ -1,37 +1,17 @@
-package dto;
+package com.example.OnlineOrder.dto;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
-public class MenuResponseDTO {
+public class MenuCreateDTO {
 
-    private  int menuId;
     private  String menuName;
     private  boolean abilitato;
-
-    private LocalDateTime dataCreazione;
 
     private List<PiattoMenuDTO> piatti;
 
 
-    public MenuResponseDTO() {
+    public MenuCreateDTO() {
 
-    }
-
-    public LocalDateTime getDataCreazione() {
-        return dataCreazione;
-    }
-
-    public void setDataCreazione(LocalDateTime dataCreazione) {
-        this.dataCreazione = dataCreazione;
-    }
-
-    public int getMenuId() {
-        return menuId;
-    }
-
-    public void setMenuId(int menuId) {
-        this.menuId = menuId;
     }
 
     public String getMenuName() {
@@ -46,10 +26,6 @@ public class MenuResponseDTO {
         return piatti;
     }
 
-    public  void addPiatto(PiattoMenuDTO piattoDTO) {
-        this.piatti.add(piattoDTO);
-    }
-
     public void setMenuName(String menuName) {
         this.menuName = menuName;
     }
@@ -62,5 +38,3 @@ public class MenuResponseDTO {
         this.piatti = piatti;
     }
 }
-
-

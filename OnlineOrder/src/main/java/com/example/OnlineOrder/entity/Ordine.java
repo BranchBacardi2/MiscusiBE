@@ -8,10 +8,11 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-@Table(name = "Ordine")
+@Table(name = "ordine")
 public class Ordine {
     @Id
     @Column(name = "ordine_id")
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer ordineId;
 
     @Column(name = "data_ordine")

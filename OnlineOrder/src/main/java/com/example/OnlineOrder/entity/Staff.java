@@ -7,10 +7,11 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "Staff")
+@Table(name = "staff")
 public class Staff {
     @Id
     @Column(name = "dipendente_id")
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer dipendenteId;
 
     @Column(name = "nome")

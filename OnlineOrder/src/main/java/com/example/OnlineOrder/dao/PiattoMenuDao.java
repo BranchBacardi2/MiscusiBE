@@ -1,6 +1,5 @@
-package dao;
+package com.example.OnlineOrder.dao;
 
-import com.example.OnlineOrder.entity.Ordine;
 import com.example.OnlineOrder.entity.PiattoMenu;
 
 import java.util.List;

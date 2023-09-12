@@ -1,4 +1,4 @@
-package dto;
+package com.example.OnlineOrder.dto;
 
 public class ErrorResponseDTO {
     private int status;

@@ -6,10 +6,11 @@ import java.util.List;
 
 
 @Entity
-@Table(name = "Ingredienti")
+@Table(name = "ingredienti")
 public class Ingredienti {
     @Id
     @Column(name = "ingrediente_id")
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer ingredienteId;
 
     @Column(name = "nome")

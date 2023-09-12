@@ -1,6 +1,6 @@
-package rest.castomExeption;
+package com.example.OnlineOrder.rest.castomExeption;
 
-import dto.ErrorResponseDTO;
+import com.example.OnlineOrder.dto.ErrorResponseDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

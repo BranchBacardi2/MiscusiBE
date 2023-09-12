@@ -4,10 +4,11 @@ import jakarta.persistence.*;
 
 
 @Entity
-@Table(name = "Piatti_ordinati")
+@Table(name = "piatti_ordinati")
 public class PiattiOrdinati {
     @Id
     @Column(name = "piatti_ordinati_id")
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer piattiOrdinatiId;
 
     @Column(name = "quantita")

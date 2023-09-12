@@ -6,10 +6,11 @@ import java.util.List;
 
 
 @Entity
-@Table(name = "Stato_ordine")
+@Table(name = "stato_ordine")
 public class StatoOrdine {
     @Id
     @Column(name = "stato_ordine_id")
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer statoOrdineId;
 
     @Column(name = "descrizione")

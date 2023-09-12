@@ -1,10 +1,10 @@
-package dto;
+package com.example.OnlineOrder.dto;
 
 public class PiattoMenuDTO {
     private  int id_piatto ;
 
     private String nomePiatto;
-    private  int prezzo;
+    private  float prezzo;
 
 
     public String getNomePiatto() {
@@ -22,7 +22,7 @@ public class PiattoMenuDTO {
         return id_piatto;
     }
 
-    public int getPrezzo() {
+    public float getPrezzo() {
         return prezzo;
     }
 
@@ -30,7 +30,7 @@ public class PiattoMenuDTO {
         this.id_piatto = id_piatto;
     }
 
-    public void setPrezzo(int prezzo) {
+    public void setPrezzo(float prezzo) {
         this.prezzo = prezzo;
     }
 }

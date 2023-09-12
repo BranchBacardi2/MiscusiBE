@@ -1,4 +1,4 @@
-package rest.castomExeption;
+package com.example.OnlineOrder.rest.castomExeption;
 
 public class NotFIndExeption extends  RuntimeException{
 

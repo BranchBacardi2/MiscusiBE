@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS  Ingredienti (
+CREATE TABLE IF NOT EXISTS  ingredienti (
     ingrediente_id INT NOT NULL AUTO_INCREMENT,
     nome varchar(100) NOT NULL,
     unita_misura varchar(10) NOT NULL,
@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS  Ingredienti (
     soglia_minima INT NOT NULL,
     PRIMARY KEY (ingrediente_id)
     );
-INSERT INTO Ingredienti (nome, unita_misura, disponibilita_magazzino, soglia_minima)
+INSERT INTO ingredienti (nome, unita_misura, disponibilita_magazzino, soglia_minima)
 VALUES
     ('pennette Rigate','kg', 25,3),
     ('armigiano Reggiano','kg', 30,2),
@@ -33,30 +33,30 @@ VALUES
 
 
 
-CREATE TABLE IF NOT EXISTS Piatti  (
+CREATE TABLE IF NOT EXISTS piatti  (
     piatto_id INT NOT NULL AUTO_INCREMENT,
     descrizione varchar(100) NOT NULL,
     disponibilita boolean,
     PRIMARY KEY (piatto_id)
     );
-INSERT INTO Piatti (descrizione,disponibilita)
+INSERT INTO piatti (descrizione,disponibilita)
 VALUES
     ('pasta 4 formaggi',true),
     ('pesce spada alla siciliana',true),
     ('tiramisu',true);
 
 
-CREATE TABLE IF NOT EXISTS Piatti_ingredienti (
+CREATE TABLE IF NOT EXISTS piatti_ingredienti (
     prodotti_ingredienti_id int NOT NULL AUTO_INCREMENT,
     piatto INT NOT NULL,
     ingrediente INT NOT NULL,
     quantita INT NOT NULL,
     PRIMARY KEY (prodotti_ingredienti_id),
-    FOREIGN KEY (piatto) REFERENCES Piatti(piatto_id),
-    FOREIGN KEY (ingrediente) REFERENCES Ingredienti(ingrediente_id)
+    FOREIGN KEY (piatto) REFERENCES piatti(piatto_id),
+    FOREIGN KEY (ingrediente) REFERENCES ingredienti(ingrediente_id)
     );
 
-INSERT INTO Piatti_ingredienti(piatto,ingrediente,quantita)
+INSERT INTO piatti_ingredienti(piatto,ingrediente,quantita)
 VALUES
     (1,1,0.320),
     (1,2,0.080),
@@ -84,28 +84,28 @@ VALUES
 
 
 
-CREATE TABLE IF NOT EXISTS  Menu (
+CREATE TABLE IF NOT EXISTS  menu (
     menu_id INT NOT NULL AUTO_INCREMENT,
     nome varchar(50) NOT NULL,
-    data_creazione TIMESTAMP  DEFAULT CURRENT_TIMESTAMP,
+    data_creazione TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
     abilitato boolean,
     PRIMARY KEY (menu_id)
     );
-INSERT INTO Menu(nome, abilitato )
+INSERT INTO menu(nome, abilitato )
 VALUES
     ('menu estivo 2023', true);
 
 
-CREATE TABLE IF NOT EXISTS Piatto_menu(
+CREATE TABLE IF NOT EXISTS piatto_menu(
      piatto_menu_id int NOT null AUTO_INCREMENT,
      piatto int NOT null,
      menu int NOT null,
      prezzo float NOT null,
      PRIMARY KEY (piatto_menu_id),
-     FOREIGN KEY (piatto) REFERENCES Piatti(piatto_id),
-     FOREIGN KEY (menu) REFERENCES Menu(menu_id)
+     FOREIGN KEY (piatto) REFERENCES piatti(piatto_id),
+     FOREIGN KEY (menu) REFERENCES menu(menu_id)
     );
-INSERT INTO Piatto_menu(piatto,menu,prezzo)
+INSERT INTO piatto_menu(piatto,menu,prezzo)
 VALUES
     (1,1,10.0),
     (2,1,13.0),
@@ -114,7 +114,7 @@ VALUES
 
 
 
-CREATE TABLE IF NOT EXISTS  Cliente (
+CREATE TABLE IF NOT EXISTS  cliente (
     cliente_id INT NOT NULL AUTO_INCREMENT,
     nome varchar(30) NOT NULL,
     cognome varchar(40) NOT NULL,
@@ -123,18 +123,18 @@ CREATE TABLE IF NOT EXISTS  Cliente (
     PRIMARY KEY (cliente_id)
     );
 
-INSERT INTO Cliente (nome, cognome, indirizzo_spedizione, mail)
+INSERT INTO cliente (nome, cognome, indirizzo_spedizione, mail)
 VALUES
     ('Davide','Candalino','Milano via gatti 34', 'davide.candalino@tiscali.it');
 
 
-CREATE TABLE IF NOT EXISTS  Ruolo (
+CREATE TABLE IF NOT EXISTS  ruolo (
     ruolo_id int NOT  null AUTO_INCREMENT,
     descrizione varchar (300),
     PRIMARY KEY (ruolo_id)
     );
 
-INSERT INTO Ruolo (descrizione)
+INSERT INTO ruolo (descrizione)
 VALUES
     ('cuoco'),
     ('raider'),
@@ -142,16 +142,16 @@ VALUES
 
 
 
-CREATE TABLE IF NOT EXISTS  Staff(
+CREATE TABLE IF NOT EXISTS  staff(
     dipendente_id INT NOT NULL AUTO_INCREMENT,
     nome  varchar(80),
     cognome varchar(200),
     ruolo INT NOT NULL,
     PRIMARY KEY (dipendente_id),
-    FOREIGN KEY (ruolo) REFERENCES Ruolo(ruolo_id)
+    FOREIGN KEY (ruolo) REFERENCES ruolo(ruolo_id)
     );
 
-INSERT INTO Staff (nome,cognome,ruolo)
+INSERT INTO staff (nome,cognome,ruolo)
 VALUES
     ('Mario','Rossi',1),
     ('Giovanni', 'Storti', 2),
@@ -159,12 +159,12 @@ VALUES
 
 
 
-CREATE TABLE IF NOT EXISTS Stato_ordine (
+CREATE TABLE IF NOT EXISTS stato_ordine (
     stato_ordine_id int NOT  null AUTO_INCREMENT,
     descrizione varchar (40),
     PRIMARY KEY (stato_ordine_id)
     );
-INSERT INTO Stato_ordine (descrizione)
+INSERT INTO stato_ordine (descrizione)
 VALUES
     ('inSospeso'),
     ('creato'),
@@ -175,7 +175,7 @@ VALUES
     ('avvenutaConsegna');
 
 
-CREATE TABLE IF NOT EXISTS Ordine (
+CREATE TABLE IF NOT EXISTS ordine (
     ordine_id int NOT NULL AUTO_INCREMENT,
     data_ordine  TIMESTAMP,
     indirizzo_consegna varchar(300),
@@ -184,18 +184,18 @@ CREATE TABLE IF NOT EXISTS Ordine (
     cuoco int,
     fattorino int ,
     PRIMARY KEY (ordine_id),
-    FOREIGN KEY (stato) REFERENCES Stato_ordine(stato_ordine_id),
-    FOREIGN KEY (cilente) REFERENCES Cliente(cliente_id),
-    FOREIGN KEY (cuoco) REFERENCES Staff(dipendente_id),
-    FOREIGN KEY (fattorino) REFERENCES Staff(dipendente_id)
+    FOREIGN KEY (stato) REFERENCES stato_ordine(stato_ordine_id),
+    FOREIGN KEY (cilente) REFERENCES cliente(cliente_id),
+    FOREIGN KEY (cuoco) REFERENCES staff(dipendente_id),
+    FOREIGN KEY (fattorino) REFERENCES staff(dipendente_id)
     );
 
-CREATE TABLE IF NOT EXISTS Piatti_ordinati (
+CREATE TABLE IF NOT EXISTS piatti_ordinati (
     piatti_ordinati_id INT NOT NULL ,
     quantita  INT NOT NULL,
     piatto_nel_menu INT NOT NULL,
     ordine INT NOT NULL,
     PRIMARY KEY (piatti_ordinati_id),
-    FOREIGN KEY (piatto_nel_menu) REFERENCES Piatto_menu(piatto_menu_id),
-    FOREIGN KEY (ordine) REFERENCES Ordine(ordine_id)
+    FOREIGN KEY (piatto_nel_menu) REFERENCES piatto_menu(piatto_menu_id),
+    FOREIGN KEY (ordine) REFERENCES ordine(ordine_id)
     );

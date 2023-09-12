@@ -1,20 +1,29 @@
-package dto;
-
-import com.example.OnlineOrder.entity.Menu;
+package com.example.OnlineOrder.dto;
 
 import java.util.List;
 
-public class MenuCreateDTO {
+public class MenuUpdateDTO {
 
+    private  int id;
     private  String menuName;
     private  boolean abilitato;
 
     private List<PiattoMenuDTO> piatti;
 
+    public int getId() {
+        return id;
+    }
 
-    public MenuCreateDTO() {
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public MenuUpdateDTO() {
 
     }
+
+
+
 
     public String getMenuName() {
         return menuName;
@@ -39,4 +48,7 @@ public class MenuCreateDTO {
     public void setPiatti(List<PiattoMenuDTO> piatti) {
         this.piatti = piatti;
     }
+
+
+
 }

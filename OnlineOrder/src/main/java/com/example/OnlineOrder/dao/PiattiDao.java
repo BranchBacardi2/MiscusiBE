@@ -1,4 +1,4 @@
-package dao;
+package com.example.OnlineOrder.dao;
 
 import com.example.OnlineOrder.entity.Piatti;
 

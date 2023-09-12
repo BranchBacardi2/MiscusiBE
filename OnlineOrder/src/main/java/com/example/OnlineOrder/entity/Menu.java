@@ -7,16 +7,18 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-@Table(name = "Menu")
+@Table(name = "menu")
 public class Menu {
     @Id
     @Column(name = "menu_id")
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer menuId;
 
     @Column(name = "nome")
     private String nome;
 
     @Column(name = "data_creazione")
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private LocalDateTime dataCreazione;
 
     @Column(name = "abilitato")
@@ -25,6 +27,10 @@ public class Menu {
 
     @OneToMany(mappedBy = "menu")
     private List<PiattoMenu> piatti;
+
+    public void setDataCreazione(LocalDateTime dataCreazione) {
+        this.dataCreazione = dataCreazione;
+    }
 
     public List<PiattoMenu> getPiatti() {
         return this.piatti;

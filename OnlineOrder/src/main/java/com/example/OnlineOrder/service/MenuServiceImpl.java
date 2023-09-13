@@ -56,6 +56,7 @@ public class MenuServiceImpl implements  MenuService {
         menu.setMenuId(0);
         menu.setAbilitato(menuInput.isAbilitato());
         menu.setNome(menuInput.getMenuName());
+        menu.setDataCreazione(LocalDateTime.now());
         Menu newMenu = menuDao.save(menu);
         result.setAbilitato(newMenu.getAbilitato());
         result.setMenuName(newMenu.getNome());
@@ -108,6 +109,7 @@ public class MenuServiceImpl implements  MenuService {
         menu.setMenuId(menuInput.getId());
         menu.setAbilitato(menuInput.isAbilitato());
         menu.setNome(menuInput.getMenuName());
+        menu.setDataCreazione(LocalDateTime.now());
         Menu newMenu = menuDao.save(menu);
         result.setAbilitato(newMenu.getAbilitato());
         result.setMenuName(newMenu.getNome());

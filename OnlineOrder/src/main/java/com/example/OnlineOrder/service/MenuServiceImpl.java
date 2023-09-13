@@ -1,5 +1,6 @@
 package com.example.OnlineOrder.service;
 
+
 import com.example.OnlineOrder.dto.MenuUpdateDTO;
 import com.example.OnlineOrder.entity.Menu;
 import com.example.OnlineOrder.entity.Piatti;
@@ -10,6 +11,9 @@ import com.example.OnlineOrder.dao.PiattoMenuDaoImpl;
 import com.example.OnlineOrder.dto.MenuCreateDTO;
 import com.example.OnlineOrder.dto.MenuResponseDTO;
 import com.example.OnlineOrder.dto.PiattoMenuDTO;
+import com.example.OnlineOrder.rest.MenuRestController;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.OnlineOrder.rest.castomExeption.NotFIndExeption;
@@ -18,17 +22,23 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+
 @Service
 public class MenuServiceImpl implements  MenuService {
     private MenuDaoImpl menuDao;
     private PiattoMenuDaoImpl piattoMenuDao;
 
     private PiattiDaoImpl piattiDao;
+
+
+    Logger logger =  LoggerFactory.getLogger(MenuRestController.class);
+
     @Autowired
     public MenuServiceImpl(MenuDaoImpl menuDao, PiattoMenuDaoImpl piattoMenuDao , PiattiDaoImpl piattiDao ) {
         this.menuDao = menuDao;
         this.piattoMenuDao = piattoMenuDao;
         this.piattiDao = piattiDao;
+
     }
 
 
@@ -58,6 +68,7 @@ public class MenuServiceImpl implements  MenuService {
         menu.setNome(menuInput.getMenuName());
         menu.setDataCreazione(LocalDateTime.now());
         Menu newMenu = menuDao.save(menu);
+        logger.info("we create a menu whit this id"+newMenu.getMenuId());
         result.setAbilitato(newMenu.getAbilitato());
         result.setMenuName(newMenu.getNome());
         result.setMenuId(newMenu.getMenuId());
@@ -67,7 +78,7 @@ public class MenuServiceImpl implements  MenuService {
         result.setDataCreazione(formattedDateTime);
 
 
-
+        logger.warn("we change this piatti_menu attributes "+ menuInput.getPiatti());
         List<PiattoMenu> piattiMenu = new ArrayList<PiattoMenu>();
         for ( PiattoMenuDTO piattoMenuDTO : menuInput.getPiatti()) {
                PiattoMenu piattoMenu  = new PiattoMenu();
@@ -111,6 +122,7 @@ public class MenuServiceImpl implements  MenuService {
         menu.setNome(menuInput.getMenuName());
         menu.setDataCreazione(LocalDateTime.now());
         Menu newMenu = menuDao.save(menu);
+        logger.info("we create a menu whit this id"+newMenu.getMenuId());
         result.setAbilitato(newMenu.getAbilitato());
         result.setMenuName(newMenu.getNome());
         result.setMenuId(newMenu.getMenuId());
@@ -121,7 +133,7 @@ public class MenuServiceImpl implements  MenuService {
 
         piattoMenuDao.delateLogic(menuInput.getId());
 
-
+        logger.warn("we change this piatti_menu attributes "+ menuInput.getPiatti());
         List<PiattoMenu> piattiMenu = new ArrayList<PiattoMenu>();
         for ( PiattoMenuDTO piattoMenuDTO : menuInput.getPiatti()) {
             PiattoMenu piattoMenu  = new PiattoMenu();

@@ -38,7 +38,7 @@ public class PiattoMenuDaoImpl implements PiattoMenuDao{
     @Override
     @Transactional
     public void delateLogic(Integer IdMenu) {
-        entityManager.createQuery("UPDATE  PiattoMenu P SET  P.attualmentePresente = false WHERE P.menu = :id" ,PiattoMenu.class).setParameter("id", IdMenu);
+        entityManager.createQuery("UPDATE  PiattoMenu P SET  P.attualmentePresente = false WHERE P.menu.id = :id").setParameter("id", IdMenu);
 
 
     }

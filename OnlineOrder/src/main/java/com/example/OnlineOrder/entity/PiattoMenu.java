@@ -21,7 +21,7 @@ public class PiattoMenu {
     @Column(name = "prezzo")
     private Float prezzo;
 
-    @Column(name= "attualmentePresente")
+    @Column(name= "attualmente_presente")
     private  boolean attualmentePresente;
 
     public Integer getPiattoMenuId() {

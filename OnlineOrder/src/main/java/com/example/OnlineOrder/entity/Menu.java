@@ -18,7 +18,7 @@ public class Menu {
     private String nome;
 
     @Column(name = "data_creazione")
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime dataCreazione;
 
     @Column(name = "abilitato")
@@ -70,26 +70,5 @@ public class Menu {
         this.abilitato = abilitato;
     }
 
-
-/*
-    private  String ToStringpiatti(){
-        String result= "[\' ";
-        this.piatti.stream().map(piatto ->  "{ piatto ="+ piatto.getPiatto() + '\''+
-                                                      "prezzo ="+ piatto.getPrezzo() + "} \'");
-        result=result+" ]";
-        return  result;
-    }
-
-    @Override
-    public String toString() {
-        return "Menu{" +
-                "menuId=" + menuId +
-                ", nome='" + nome + '\'' +
-                ", dataCreazione=" + dataCreazione +
-                ", abilitato=" + abilitato +
-                ", piatti=" + this.ToStringpiatti() +
-                '}';
-    }
-    */
 
 }

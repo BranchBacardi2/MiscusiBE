@@ -48,13 +48,14 @@ VALUES
 
 CREATE TABLE IF NOT EXISTS piatti_ingredienti (
     prodotti_ingredienti_id int NOT NULL AUTO_INCREMENT,
-    piatto INT UNIQUE NOT NULL,
-    ingrediente  INT UNIQUE NOT NULL,
+    piatto INT  NOT NULL,
+    ingrediente  INT  NOT NULL,
     quantita INT NOT NULL,
     PRIMARY KEY (prodotti_ingredienti_id),
     FOREIGN KEY (piatto) REFERENCES piatti(piatto_id),
     FOREIGN KEY (ingrediente) REFERENCES ingredienti(ingrediente_id)
     );
+CREATE UNIQUE INDEX index_prodotti_ingredienti ON piatti_ingredienti(piatto, ingrediente, prodotti_ingredienti_id);
 
 INSERT INTO piatti_ingredienti(piatto,ingrediente,quantita)
 VALUES
@@ -87,7 +88,7 @@ VALUES
 CREATE TABLE IF NOT EXISTS  menu (
     menu_id INT NOT NULL AUTO_INCREMENT,
     nome varchar(50) NOT NULL,
-    data_creazione TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+    data_creazione TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL ,
     abilitato boolean,
     PRIMARY KEY (menu_id)
     );
@@ -99,12 +100,15 @@ VALUES
 CREATE TABLE IF NOT EXISTS piatto_menu(
      piatto_menu_id int NOT null AUTO_INCREMENT,
      piatto int NOT null,
-     menu int NOT null UNIQUE,
-     prezzo float NOT null UNIQUE,
+     menu int NOT null ,
+     prezzo float NOT null ,
+     attualmente_presente boolean default true,
      PRIMARY KEY (piatto_menu_id),
      FOREIGN KEY (piatto) REFERENCES piatti(piatto_id),
      FOREIGN KEY (menu) REFERENCES menu(menu_id)
     );
+CREATE UNIQUE INDEX index_piatto_menu ON piatto_menu(piatto, menu, piatto_menu_id);
+
 INSERT INTO piatto_menu(piatto,menu,prezzo)
 VALUES
     (1,1,10.0),
@@ -193,10 +197,10 @@ CREATE TABLE IF NOT EXISTS ordine (
 CREATE TABLE IF NOT EXISTS piatti_ordinati (
     piatti_ordinati_id INT NOT NULL ,
     quantita  INT NOT NULL,
-    piatto_nel_menu INT NOT NULL UNIQUE,
-    ordine INT NOT NULL UNIQUE,
-    attualmentePresente boolean default true,
+    piatto_nel_menu INT NOT NULL,
+    ordine INT NOT NULL ,
     PRIMARY KEY (piatti_ordinati_id),
     FOREIGN KEY (piatto_nel_menu) REFERENCES piatto_menu(piatto_menu_id),
     FOREIGN KEY (ordine) REFERENCES ordine(ordine_id)
     );
+CREATE UNIQUE INDEX index_piatti_ordinati ON piatti_ordinati(piatto_nel_menu , ordine, piatti_ordinati_id);

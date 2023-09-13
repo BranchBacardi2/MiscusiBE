@@ -1,6 +1,8 @@
 package com.example.OnlineOrder.dao;
 
 import com.example.OnlineOrder.entity.Menu;
+import com.example.OnlineOrder.entity.Piatti;
+import com.example.OnlineOrder.rest.castomExeption.NotFIndExeption;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +22,17 @@ public class MenuDaoImpl implements  MenuDao{
        return entityManager.merge(menu);
     }
 
-
+    @Override
+    public Menu findById(int menuId) {
+        Menu result;
+        try {
+            result = entityManager.createQuery("SELECT u from Menu u WHERE u.id = :id", Menu.class).
+                    setParameter("id", menuId).getSingleResult();
+        } catch (Exception e) {
+            throw new NotFIndExeption("Menu","" +menuId );
+        }
+        return result;
+    }
 
 
 }

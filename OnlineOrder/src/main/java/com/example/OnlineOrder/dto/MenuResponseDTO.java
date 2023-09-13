@@ -10,7 +10,7 @@ public class MenuResponseDTO {
     private  String menuName;
     private  boolean abilitato;
 
-    private LocalDateTime dataCreazione;
+    private String dataCreazione;
 
     private List<PiattoMenuDTO> piatti ;
 
@@ -19,11 +19,11 @@ public class MenuResponseDTO {
 
     }
 
-    public LocalDateTime getDataCreazione() {
+    public String getDataCreazione() {
         return dataCreazione;
     }
 
-    public void setDataCreazione(LocalDateTime dataCreazione) {
+    public void setDataCreazione(String dataCreazione) {
         this.dataCreazione = dataCreazione;
     }
 

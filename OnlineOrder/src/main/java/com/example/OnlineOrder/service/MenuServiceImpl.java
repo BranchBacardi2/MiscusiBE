@@ -14,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.OnlineOrder.rest.castomExeption.NotFIndExeption;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 @Service
@@ -58,7 +60,10 @@ public class MenuServiceImpl implements  MenuService {
         result.setAbilitato(newMenu.getAbilitato());
         result.setMenuName(newMenu.getNome());
         result.setMenuId(newMenu.getMenuId());
-        result.setDataCreazione(newMenu.getDataCreazione());
+        LocalDateTime dataCreation = (newMenu.getDataCreazione());
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        String formattedDateTime = dataCreation.format(formatter);
+        result.setDataCreazione(formattedDateTime);
 
 
 
@@ -89,6 +94,9 @@ public class MenuServiceImpl implements  MenuService {
 
     @Override
     public MenuResponseDTO update(MenuUpdateDTO menuInput) {
+
+        menuDao.findById(menuInput.getId());
+
         String NotFindId = this.controlPiattiNotExist(menuInput.getPiatti());
         if (!NotFindId.isEmpty()){
             throw new NotFIndExeption("piatto",NotFindId );
@@ -104,7 +112,10 @@ public class MenuServiceImpl implements  MenuService {
         result.setAbilitato(newMenu.getAbilitato());
         result.setMenuName(newMenu.getNome());
         result.setMenuId(newMenu.getMenuId());
-        result.setDataCreazione(newMenu.getDataCreazione());
+        LocalDateTime dataCreation = (newMenu.getDataCreazione());
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        String formattedDateTime = dataCreation.format(formatter);
+        result.setDataCreazione(formattedDateTime);
 
         piattoMenuDao.delateLogic(menuInput.getId());
 

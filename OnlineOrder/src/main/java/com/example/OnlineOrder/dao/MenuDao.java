@@ -6,5 +6,7 @@ public interface MenuDao  {
 
     Menu save(Menu menu);
 
+    Menu  findById(int menuId);
+
 
 }

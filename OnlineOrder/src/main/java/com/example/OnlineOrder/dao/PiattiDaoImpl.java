@@ -17,7 +17,15 @@ public class PiattiDaoImpl implements PiattiDao {
     @Override
     @Transactional
     public Piatti findById(int id) {
-       return entityManager.createQuery("SELECT u from Piatti u WHERE u.id = :id", Piatti.class).
-                setParameter("id", id).getSingleResult();
-    }
+        Piatti result;
+        try {
+            result = entityManager.createQuery("SELECT u from Piatti u WHERE u.id = :id", Piatti.class).
+                    setParameter("id", id).getSingleResult();
+        } catch (Exception e) {
+            return null;
+        }
+         return result;
+        }
 }
+
+
